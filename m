@@ -21,12 +21,14 @@ fi
 
 src="$prj"/STCube/Src/
 inc="$prj"/STCube/Inc/
+tools="$prj"/STCube/tools/
 
 
 g++ gpio-cfg.cpp \
 	--std=c++11 \
 	-D STM32F103xB \
 	-I "$inc" \
+	-I "$tools" \
 	-I "$lib"/Drivers/STM32F1xx_HAL_Driver/Inc/ \
 	-I "$lib"/Drivers/CMSIS/Device/ST/STM32F1xx/Include/ \
 	-I "$lib"/Drivers/CMSIS/Include/ \
