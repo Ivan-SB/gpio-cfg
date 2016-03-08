@@ -119,9 +119,9 @@ void GPIOCfg(std::string name, std::string GPIOx, std::vector<GPIO_InitTypeDef> 
   if(splitio) {
     if(masklow[TYPEINPUT]) {
       ccode << "  /* LOW INPUT */" << std::endl;
-      ccode << "  MODIFY_REG((" << GPIOx << "->CRL" << "), \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(masklow[TYPEINPUT]) << ", \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(configlow[TYPEINPUT]) <<" \\"<< std::endl;
+      ccode << "  MODIFY_REG((" << GPIOx << "->CRL" << ")," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(masklow[TYPEINPUT]) << "," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(configlow[TYPEINPUT]) << std::endl;
       ccode << "  );" << std::endl;
       if(splitpull | ((pullhighrr | pullhighsrr) == 0x00) ) {
         if(pulllowrr) {
@@ -134,9 +134,9 @@ void GPIOCfg(std::string name, std::string GPIOx, std::vector<GPIO_InitTypeDef> 
     }
     if(maskhigh[TYPEINPUT]) {
       ccode << "  /* HIGH INPUT */" << std::endl;
-      ccode << "  MODIFY_REG((" << GPIOx << "->CRH" << "), \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(maskhigh[TYPEINPUT]) << ", \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(confighigh[TYPEINPUT]) <<" \\"<< std::endl;
+      ccode << "  MODIFY_REG((" << GPIOx << "->CRH" << ")," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(maskhigh[TYPEINPUT]) << "," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(confighigh[TYPEINPUT]) << std::endl;
       ccode << "  );" << std::endl;
       if (splitpull) {
         if(pullhighrr) {
@@ -156,24 +156,24 @@ void GPIOCfg(std::string name, std::string GPIOx, std::vector<GPIO_InitTypeDef> 
     }
     if(masklow[TYPEOUTPUT]) {
       ccode << "  /* LOW OUTPUT */" << std::endl;
-      ccode << "  MODIFY_REG((" << GPIOx << "->CRL" << "), \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(masklow[TYPEOUTPUT]) << ", \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(configlow[TYPEOUTPUT]) <<" \\"<< std::endl;
+      ccode << "  MODIFY_REG((" << GPIOx << "->CRL" << ")," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(masklow[TYPEOUTPUT]) << "," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(configlow[TYPEOUTPUT]) << std::endl;
       ccode << "  );" << std::endl;
     }
     if(maskhigh[TYPEOUTPUT]) {
       ccode << "  /* HIGH OUTPUT */" << std::endl;
-      ccode << "  MODIFY_REG((" << GPIOx << "->CRH" << "), \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(maskhigh[TYPEOUTPUT]) << ", \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(confighigh[TYPEOUTPUT]) <<" \\"<< std::endl;
+      ccode << "  MODIFY_REG((" << GPIOx << "->CRH" << ")," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(maskhigh[TYPEOUTPUT]) << "," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(confighigh[TYPEOUTPUT]) << std::endl;
       ccode << "  );" << std::endl;
     }
   } else {
     if(masklow[TYPEINPUT] | masklow[TYPEOUTPUT]) {
       ccode << "  /* LOW */" << std::endl;
-      ccode << "  MODIFY_REG((" << GPIOx << "->CRL" << "), \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(masklow[TYPEOUTPUT] | masklow[TYPEINPUT]) << ", \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(configlow[TYPEOUTPUT] | configlow[TYPEINPUT]) <<" \\"<< std::endl;
+      ccode << "  MODIFY_REG((" << GPIOx << "->CRL" << ")," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(masklow[TYPEOUTPUT] | masklow[TYPEINPUT]) << "," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(configlow[TYPEOUTPUT] | configlow[TYPEINPUT]) << std::endl;
       ccode << "  );" << std::endl;
       if(splitpull | ((pullhighrr | pullhighsrr) == 0x00) ) {
         if(pulllowrr) {
@@ -186,9 +186,9 @@ void GPIOCfg(std::string name, std::string GPIOx, std::vector<GPIO_InitTypeDef> 
     }
     if(maskhigh[TYPEINPUT] | maskhigh[TYPEOUTPUT]) {
       ccode << "  /* HIGH */" << std::endl;
-      ccode << "  MODIFY_REG((" << GPIOx << "->CRH" << "), \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(maskhigh[TYPEOUTPUT] | maskhigh[TYPEINPUT]) << ", \\" << std::endl;
-      ccode << "    (uint32_t)0b" << std::bitset<32>(confighigh[TYPEOUTPUT] | confighigh[TYPEINPUT]) <<" \\"<< std::endl;
+      ccode << "  MODIFY_REG((" << GPIOx << "->CRH" << ")," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(maskhigh[TYPEOUTPUT] | maskhigh[TYPEINPUT]) << "," << std::endl;
+      ccode << "    (uint32_t)0b" << std::bitset<32>(confighigh[TYPEOUTPUT] | confighigh[TYPEINPUT]) << std::endl;
       ccode << "  );" << std::endl;
       if (splitpull) {
         if(pullhighrr) {
