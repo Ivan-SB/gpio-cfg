@@ -214,14 +214,14 @@ int main(int argc, char* argv[]) {
   std::ofstream cheader;
   std::ofstream ccode;
   if ( argc != 3 ) {
-    std::cerr << "usage: " << argv[0] << " <header dir path> <c dir path>\n";
+    std::cerr << "usage: " << argv[0] << " <header dir path> <c dir path>" << std::endl;
     return 1;
   }
   cheader.open(std::string(argv[1]) + "/GPIO.h");
   ccode.open(std::string(argv[2]) + "/GPIO.c");
 
   cheader << "#include \"gpio.h\"\n\n";
-  ccode << "#include \"gpio-cfg.h\"\n\n";
+  ccode << "#include \"GPIO.h\"\n\n";
 
   for(auto const& cfg : GPIOSetup) {
     GPIOCfg(cfg.func, cfg.GPIOx, cfg.GPIOcfg

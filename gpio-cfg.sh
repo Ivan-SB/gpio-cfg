@@ -1,5 +1,7 @@
 #/bin/sh
 
+mydir=$(dirname "$0")
+
 if [ -z "$1" ]; then
 	prj=$(realpath "../")
 else
@@ -22,6 +24,7 @@ fi
 src="$prj"/STCube/Src/
 inc="$prj"/STCube/Inc/
 tools="$prj"/STCube/tools/
+
 
 g++ gpio-cfg.cpp \
 	--std=c++11 \
